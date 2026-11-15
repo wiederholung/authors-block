@@ -7,17 +7,16 @@ authors:
       - ref: jdct
     corresponding: true
     email: john.doe@jdct.edu
-    orcid: 0000-1111-2222-3333
+    # Official example record; replace before using this author metadata.
+    orcid: 0000-0002-1825-0097
     equal-contributor: true
   - name: John Roe
     affiliations:
       - ref: jdct
-    orcid: 0000-3333-2222-1111
   - name: Jane Roe
     affiliations:
       - ref: jdct
       - ref: iot
-    orcid: 0000-2222-1111-3333
     equal-contributor: true
 
 affiliations:

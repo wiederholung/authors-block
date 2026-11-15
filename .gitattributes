@@ -1,0 +1,4 @@
+# Keep bundled artwork byte-identical across Windows and Unix checkouts.
+_extensions/authors-block/assets/*.svg -text
+_extensions/authors-block/assets/*.png binary
+_extensions/authors-block/assets/*.pdf binary

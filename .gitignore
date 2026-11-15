@@ -2,6 +2,7 @@
 /*/*
 
 !.gitignore
+!/.gitattributes
 !/.github/
 !/.github/workflows/
 !/_extensions/
@@ -21,6 +22,8 @@
 !/example.qmd
 !/devstuffs.R
 !/README.md
+!/README-orcid.md
+!/tests/*.py
 !/LICENSE.md
 !/NEWS.md
 !/example.png
@@ -33,3 +36,6 @@
 *.docx
 *.pdf
 .Rproj.user
+
+# Bundled source asset, not a generated example document.
+!/_extensions/authors-block/assets/orcid.pdf

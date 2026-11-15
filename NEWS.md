@@ -2,6 +2,21 @@
 
 # Authors-block NEWS
 
+## 0.3.0-dev local checkpoint (2026-11-16)
+
+- Add a DOCX author renderer with vector ORCID and correspondence icons,
+  numbered affiliations, equal-contribution marks and bilingual notes.
+- Merge corresponding email addresses into one paragraph with individual
+  links, preserving the order of author details, date and abstract.
+- Link each affiliation number and equal-contribution mark to its detail
+  paragraph; keep the superscript appearance and avoid bookmark-name collisions.
+- Bundle SVG and PNG assets plus the ORCID PDF derivative, so rendering and
+  template snapshots do not depend on remote images.
+- Add nine real Quarto/Pandoc DOCX integration cases to CI. The local Windows
+  Word checks also cover actual layout and internal-link navigation.
+- Retain the existing renderer for non-DOCX formats. This checkpoint is not a
+  tagged release; remote CI and the upstream R snapshots have not been run locally.
+
 ## Unreleased (2024-10-15)
 
 #### Bug fixes

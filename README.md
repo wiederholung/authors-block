@@ -6,13 +6,23 @@
 
 This extension brings the capability to add an author-related header block when rendering docx-documents with Quarto.
 
+This fork's local `0.3.0-dev` adds vector ORCID and correspondence icons,
+equal-contribution marks, merged email links and Chinese author notes for DOCX.
+See [DOCX author-block support](README-orcid.md) for
+installation, examples and integration checks. These changes are not yet published.
+
 The extension adds some modifications to the code originally provided with the lua-filters [scholarly-metadata](https://github.com/pandoc/lua-filters/tree/master/scholarly-metadata) (by Albert Krewinkel and Robert Winkler) and [author-info-block](https://github.com/pandoc/lua-filters/tree/master/author-info-blocks) (by Albert Krewinkel) in order to make it compatible with Quarto and its [normalized author-block](https://quarto.org/docs/journals/authors.html).  
 
 ## Installing
 
 ```bash
-quarto add kapsner/authors-block
+quarto add ../authors-block
 ```
+
+Run this from the consuming project and adjust the path to this local checkout.
+After publishing a release, install the fork with a chosen tag as described in
+[DOCX ORCID support](README-orcid.md). Installing the upstream repository does
+not include this fork's unpublished ORCID changes.
 
 Using `authors-block` requires Quarto version >= 1.3.0
 
@@ -39,17 +49,16 @@ authors:
       - ref: jdct
     corresponding: true
     email: john.doe@jdct.edu
-    orcid: 0000-1111-2222-3333
+    # Official example record; replace before using this author metadata.
+    orcid: 0000-0002-1825-0097
     equal-contributor: true
   - name: John Roe
     affiliations:
       - ref: jdct
-    orcid: 0000-3333-2222-1111
   - name: Jane Roe
     affiliations:
       - ref: jdct
       - ref: iot
-    orcid: 0000-2222-1111-3333
     equal-contributor: true
 
 affiliations:

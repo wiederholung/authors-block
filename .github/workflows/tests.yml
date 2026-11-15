@@ -64,6 +64,13 @@ jobs:
         with: 
           version: ${{ matrix.config.quarto }}
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: DOCX author and ORCID integration
+        run: python tests/check_docx.py
+
       - name: Install sys deps for Ubuntu
         if: runner.os == 'Linux'
         run: sudo apt update && sudo apt install -y libgit2-dev libcurl4-openssl-dev
