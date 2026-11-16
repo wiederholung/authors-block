@@ -23,6 +23,7 @@
 !/devstuffs.R
 !/README.md
 !/README-orcid.md
+!/README-pdf.md
 !/tests/*.py
 !/LICENSE.md
 !/NEWS.md
@@ -39,3 +40,4 @@
 
 # Bundled source asset, not a generated example document.
 !/_extensions/authors-block/assets/orcid.pdf
+!/_extensions/authors-block/assets/envelope.pdf

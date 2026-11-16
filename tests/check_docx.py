@@ -115,7 +115,7 @@ affiliations:
             for h in internal:
                 label=''.join(h.itertext()); anchor=h.get('{'+NS['w']+'}anchor')
                 assert anchor in targets,(name,anchor)
-                destination=('这些作者作出了同等贡献。' if name=='structured' else 'These authors contributed equally.') if label=='†' else ('First institution' if label=='1' else 'Second institution')
+                destination=('同等贡献' if name=='structured' else 'Equal contribution') if label=='†' else ('First institution' if label=='1' else 'Second institution')
                 assert targets[anchor]==label+' '+destination,(name,anchor,targets[anchor])
                 props=h.find('w:r/w:rPr',NS)
                 for prop,value in [('color','000000'),('u','none'),('sz','19' if name=='custom_sizes' else '16')]:

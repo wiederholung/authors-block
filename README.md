@@ -8,6 +8,7 @@ This extension brings the capability to add an author-related header block when 
 
 This fork's local `0.3.0-dev` adds vector ORCID and correspondence icons,
 equal-contribution marks, merged email links and Chinese author notes for DOCX.
+PDF now supports native ctexart/scrartcl title integration; see [PDF support](README-pdf.md).
 See [DOCX author-block support](README-orcid.md) for
 installation, examples and integration checks. These changes are not yet published.
 
