@@ -14,7 +14,7 @@ Use the filter under `format.docx.filters`. For PDF see README-pdf.md; HTML shou
 
 Use the reference document's `Author`, `Affiliation`, `Author Note` and `Author Contact` paragraph styles to control fonts and alignment. `Affiliation Last`, `Author Note Last` and `Author Contact Continued` provide spacing variants without blank paragraphs. `Author Email` is a character style for black, non-underlined links. The accompanying quarto-template references use 12 pt authors and 10.5 pt notes, centered, with 1.15 line spacing; author/affiliation/group/contact gaps are 6/2/4/2/6 pt as described in that repository's design specification.
 
-If those reference font sizes change, set the matching inline-size bases (these options do not override paragraph fonts):
+The extension reads the effective sizes of `Author` and `Affiliation` from the selected reference document, following paragraph-style inheritance and document defaults. It uses 12 and 10.5 pt respectively when a size is unavailable. The following optional values take precedence for inline icons, spacing and marks:
 
 ```yaml
 authors-block:
@@ -22,6 +22,12 @@ authors-block:
     author-size: 12
     note-size: 10.5
 ```
+
+When a custom Pandoc DOCX template owns the title block, set `authors-block.docx.placement: template` and render `$authors-block-header$` between the subtitle and date. This field contains the styled byline, affiliations, notes and contacts. The standard `author` field holds the plain names in source order for Word’s Author property. A template that also works without the extension can use its usual author loop in the `$else$` branch.
+
+Standalone installations using Pandoc’s stock template use the default placement. Older custom templates using the author loop and `$authors-block-details$` continue to use `placement: metadata`.
+
+The bundled SLAXML parser reads the reference document's style definitions. Its source revision is `756ffad03d2a06271170a0ba82d6eac02cc2a5ca` and its MIT license is in `vendor/LICENSE.txt`. [SLAXML](https://github.com/Phrogz/SLAXML)
 
 ```yaml
 author:
@@ -41,4 +47,4 @@ format:
 
 Use `quarto add <path-to-this-repository>` for local testing. After a release is published, pin its tag in `quarto add wiederholung/authors-block@<tag>`. No `0.3.0` remote release is implied by this working tree. Commit the installed `_extensions` files in consuming projects.
 
-The repository's integration check is `python tests/check_docx.py`; it uses the installed Quarto CLI and Python's standard library. Nine cases cover structured names, multiple affiliations, both author symbols, merged emails, optional metadata, inline size overrides, internal link destinations, bookmark collisions and invalid ORCID identifiers. Native Word rendering and internal hyperlink navigation are checked separately in quarto-template. The examples are static and require no R environment.
+Run `python tests/check_docx.py` with the installed Quarto CLI. Its cases cover plain Word Author properties, structured names, shared affiliations, contribution and correspondence, optional metadata, explicit and inherited size settings, bookmark collisions, link targets and invalid identifiers. The quarto-template samples also exercise template-controlled placement in Microsoft Word.
