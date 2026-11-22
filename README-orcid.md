@@ -48,3 +48,5 @@ format:
 Use `quarto add <path-to-this-repository>` for local testing. After a release is published, pin its tag in `quarto add wiederholung/authors-block@<tag>`. No `0.3.0` remote release is implied by this working tree. Commit the installed `_extensions` files in consuming projects.
 
 Run `python tests/check_docx.py` with the installed Quarto CLI. Its cases cover plain Word Author properties, structured names, shared affiliations, contribution and correspondence, optional metadata, explicit and inherited size settings, bookmark collisions, link targets and invalid identifiers. The quarto-template samples also exercise template-controlled placement in Microsoft Word.
+
+On Windows, Quarto 1.11.9 loads Lua filters using the system ANSI code page. If rendering reports `recoverEncode: invalid argument` while loading a filter, use a project path representable in that code page. An ASCII-only path works across Windows locales.

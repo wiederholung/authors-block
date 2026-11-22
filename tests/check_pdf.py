@@ -1,10 +1,11 @@
 """Real Quarto/XeLaTeX integration, independent of quarto-template."""
 from pathlib import Path
+from path_fixture import unicode_path_label
 import shutil, subprocess, tempfile
 from pypdf import PdfReader
 
 ROOT = Path(__file__).resolve().parents[1]
-with tempfile.TemporaryDirectory(prefix='authors-block-中文 pdf-') as folder:
+with tempfile.TemporaryDirectory(prefix=f'authors-block-{unicode_path_label()} pdf-') as folder:
     root = Path(folder)
     shutil.copytree(ROOT / '_extensions', root / '_extensions')
     def render(name, cls='scrartcl', size=11, people=True, invalid=False):

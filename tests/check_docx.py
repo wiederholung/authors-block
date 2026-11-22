@@ -1,5 +1,6 @@
 """Integration tests against the real Quarto/Pandoc DOCX writer, stdlib only."""
 from pathlib import Path
+from path_fixture import unicode_path_label
 from tempfile import TemporaryDirectory
 from zipfile import ZipFile, ZIP_DEFLATED
 from io import BytesIO
@@ -42,7 +43,7 @@ def inherited_reference(path):
                 data=E.tostring(styles,encoding="utf-8",xml_declaration=True)
             dest.writestr(part,data)
 
-with TemporaryDirectory(prefix="authors-block-中文 check-") as temp:
+with TemporaryDirectory(prefix=f"authors-block-{unicode_path_label()} check-") as temp:
     target=Path(temp)
     run(["add",str(ROOT),"--no-prompt"],target)
     inherited_reference(target/"inherited.docx")
@@ -143,7 +144,7 @@ affiliations:
             targets={b.get('{'+NS['w']+'}name'):''.join(p.itertext()).replace('\u00a0',' ')
                      for p in document.findall('.//w:p',NS) for b in p.findall('.//w:bookmarkStart',NS)}
             internal=[h for h in document.findall('.//w:hyperlink',NS)
-                      if h.get('{'+NS['w']+'}anchor','').startswith('authors_block_')]
+                      if h.get('{'+NS['w']+'}anchor','').removeprefix('_').startswith('authors_block_')]
             expected={'structured':['1','2','†','2','†'], 'without_affiliations':['†'],
                       'custom_sizes':['1'], 'inherited_sizes':['1'], 'bookmark_collision':['1','†']}.get('structured' if structured else name,[])
             assert [''.join(h.itertext()) for h in internal]==expected,(name,expected)
