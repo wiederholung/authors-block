@@ -42,7 +42,7 @@ def inherited_reference(path):
                 data=E.tostring(styles,encoding="utf-8",xml_declaration=True)
             dest.writestr(part,data)
 
-with TemporaryDirectory(prefix="authors-block-check-") as temp:
+with TemporaryDirectory(prefix="authors-block-中文 check-") as temp:
     target=Path(temp)
     run(["add",str(ROOT),"--no-prompt"],target)
     inherited_reference(target/"inherited.docx")
