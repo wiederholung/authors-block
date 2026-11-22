@@ -176,6 +176,11 @@ affiliations:
             # Neither icon is superscript or a raised text run; the envelope's
             # optical alignment is part of its SVG canvas.
             for word_run in document.findall('.//w:r',NS):
+                properties=word_run.find('w:rPr',NS)
+                if properties is not None and properties.find('w:position',NS) is not None:
+                    tags=[node.tag.split('}')[-1] for node in properties]
+                    if 'u' in tags:
+                        assert tags.index('position') < tags.index('szCs') < tags.index('u'), tags
                 if word_run.find('.//w:drawing',NS) is not None:
                     assert word_run.find('w:rPr/w:vertAlign',NS) is None
                     assert word_run.find('w:rPr/w:position',NS) is None
